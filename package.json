@@ -13,6 +13,7 @@
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
     "@rsbuild/core": "^1.2.16",
+    "@types/chrome": "^0.0.309",
     "typescript": "^5.8.2"
   }
 }
