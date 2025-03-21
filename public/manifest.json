@@ -1,9 +1,0 @@
-{
-  "manifest_version": 3,
-  "version": "0.0.0",
-  "name": "YouTube Blur Edges",
-
-  "action": {
-    "default_popup": "index.html"
-  }
-}

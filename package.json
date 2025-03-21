@@ -1,19 +1,23 @@
 {
   "name": "youtube-blur-edges",
-  "version": "1.0.0",
   "private": true,
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "build": "rsbuild build",
-    "check": "biome check --write",
-    "dev": "rsbuild dev --open",
-    "format": "biome format --write",
-    "preview": "rsbuild preview"
+    "dev": "vite",
+    "build": "vite build",
+    "check": "svelte-check --tsconfig ./tsconfig.json"
   },
   "devDependencies": {
-    "@biomejs/biome": "^1.9.4",
-    "@rsbuild/core": "^1.2.16",
-    "@types/chrome": "^0.0.309",
-    "typescript": "^5.8.2"
+    "@sveltejs/vite-plugin-svelte": "^4.0.0",
+    "@tsconfig/svelte": "^5.0.4",
+    "@types/webextension-polyfill": "^0.10.0",
+    "svelte": "^5.0.0",
+    "svelte-check": "^4.0.0",
+    "tslib": "^2.6.3",
+    "typescript": "~5.6.3",
+    "vite": "^5.4.4",
+    "vite-plugin-web-extension": "^4.1.6",
+    "webextension-polyfill": "^0.10.0"
   }
 }
