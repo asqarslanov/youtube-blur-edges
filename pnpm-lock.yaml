@@ -19,6 +19,9 @@ importers:
       prettier:
         specifier: 3.5.3
         version: 3.5.3
+      prettier-plugin-svelte:
+        specifier: ^3.3.3
+        version: 3.3.3(prettier@3.5.3)(svelte@5.23.2)
       svelte:
         specifier: ^5.0.0
         version: 5.23.2
@@ -1746,6 +1749,15 @@ packages:
       }
     engines: { node: ^10 || ^12 || >=14 }
 
+  prettier-plugin-svelte@3.3.3:
+    resolution:
+      {
+        integrity: sha512-yViK9zqQ+H2qZD1w/bH7W8i+bVfKrD8GIFjkFe4Thl6kCT9SlAsXVNmt3jCvQOCsnOhcvYgsoVlRV/Eu6x5nNw==,
+      }
+    peerDependencies:
+      prettier: ^3.0.0
+      svelte: ^3.2.0 || ^4.0.0-next.0 || ^5.0.0-next.0
+
   prettier@3.5.3:
     resolution:
       {
@@ -3203,6 +3215,11 @@ snapshots:
       nanoid: 3.3.11
       picocolors: 1.1.1
       source-map-js: 1.2.1
+
+  prettier-plugin-svelte@3.3.3(prettier@3.5.3)(svelte@5.23.2):
+    dependencies:
+      prettier: 3.5.3
+      svelte: 5.23.2
 
   prettier@3.5.3: {}
 
