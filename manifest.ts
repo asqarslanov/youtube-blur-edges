@@ -17,14 +17,15 @@ export function generate(): any {
       "128": "icon/128.png",
     },
     "{{chrome}}.action": {
-      default_popup: "src/popup.html",
+      // default_popup: "src/popup.html",
     },
     "{{firefox}}.browser_action": {
-      default_popup: "src/popup.html",
+      // default_popup: "src/popup.html",
     },
     background: {
       "{{chrome}}.service_worker": "src/background.ts",
       "{{firefox}}.scripts": ["src/background.ts"],
     },
+    permissions: ["scripting", "activeTab"],
   };
 }
