@@ -8,6 +8,7 @@ export default defineConfig({
   plugins: [
     svelte(),
     webExtension({
+      browser: "firefox",
       manifest: manifest.generate,
       watchFilePaths: ["package.json", "manifest.json"],
     }),

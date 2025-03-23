@@ -4,8 +4,7 @@ export function generate(): any {
   const pkg = readJsonFile("package.json");
 
   return {
-    "{{chrome}}.manifest_version": 3,
-    "{{firefox}}.manifest_version": 2,
+    manifest_version: 3,
     name: pkg.name,
     description: pkg.description,
     version: pkg.version,
@@ -16,10 +15,7 @@ export function generate(): any {
       "96": "icon/96.png",
       "128": "icon/128.png",
     },
-    "{{chrome}}.action": {
-      // default_popup: "src/popup.html",
-    },
-    "{{firefox}}.browser_action": {
+    action: {
       // default_popup: "src/popup.html",
     },
     background: {
