@@ -1,14 +1,85 @@
 <script lang="ts">
-  console.log("Hello from the popup!");
+  import browser from "webextension-polyfill";
 </script>
 
-<div>
-  <img src="/icon-with-shadow.svg" alt="" />
-  <h1>vite-plugin-web-extension</h1>
-  <p>
-    Template: <code>svelte-ts</code>
-  </p>
-</div>
+<article class="flex size-full flex-col items-center p-4">
+  <h1 class="font-bold">YouTube Blur Edges</h1>
 
-<style>
-</style>
+  <button
+    class="bg-ytcolor-idle hover:bg-ytcolor-hover active:bg-ytcolor-active cursor-pointer justify-self-end rounded-md px-3 py-1"
+    onclick={() => {
+      browser.tabs
+        .query({ active: true, currentWindow: true })
+        .then((tabs) => {
+          return tabs[0].id || 0;
+        })
+        .then((tabId) => {
+          browser.scripting.executeScript({
+            func: () => {
+              type Config = {
+                blurSize: number;
+              };
+
+              function getBgVideo(mainVideo: HTMLVideoElement): HTMLDivElement {
+                const BACKGROUND_VIDEO_ID: string =
+                  "youtube-blur-edges--background-video";
+
+                const existing = document.getElementById(BACKGROUND_VIDEO_ID);
+                if (existing !== null) {
+                  return existing as HTMLDivElement;
+                }
+
+                let bgVideo = document.createElement("div");
+                bgVideo.id = BACKGROUND_VIDEO_ID;
+                mainVideo.parentNode!.insertBefore(bgVideo, mainVideo);
+
+                return bgVideo;
+              }
+
+              const MAIN_VIDEO_ID: string = "youtube-blur-edges--main-video";
+
+              function onChange(
+                mainVideo: HTMLVideoElement,
+                config: Config,
+              ): void {
+                const bgVideo = getBgVideo(mainVideo);
+                bgVideo.style.left = "0";
+                bgVideo.style.width = "100%";
+                bgVideo.style.height = mainVideo.style.height;
+              }
+
+              function findMainVideo(): HTMLVideoElement | null {
+                return document.querySelector(
+                  "div#container > div.html5-video-player > div.html5-video-container > video.html5-main-video",
+                );
+              }
+
+              const mainVideo = findMainVideo()!;
+              mainVideo.id = MAIN_VIDEO_ID;
+              const config: Config = {
+                blurSize: 16,
+              };
+
+              let bgVideo = getBgVideo(mainVideo);
+
+              bgVideo.style.filter = `blur(${config.blurSize}px)`;
+              bgVideo.style.backgroundImage = `-moz-element(#${MAIN_VIDEO_ID})`;
+              bgVideo.style.backgroundSize = "cover";
+
+              const observer = new MutationObserver(
+                (_mutationList, _observer) => {
+                  onChange(mainVideo, config);
+                },
+              );
+
+              onChange(mainVideo, config);
+              observer.observe(mainVideo, { attributes: true });
+            },
+            target: { tabId },
+          });
+        });
+    }}
+  >
+    Activate
+  </button>
+</article>

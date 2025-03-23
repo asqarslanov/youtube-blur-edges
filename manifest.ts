@@ -16,12 +16,8 @@ export function generate(): any {
       "128": "icon/128.png",
     },
     action: {
-      // default_popup: "src/popup.html",
+      default_popup: "src/popup.html",
     },
-    background: {
-      "{{chrome}}.service_worker": "src/background.ts",
-      "{{firefox}}.scripts": ["src/background.ts"],
-    },
-    permissions: ["scripting", "activeTab"],
+    permissions: ["activeTab", "scripting"],
   };
 }
