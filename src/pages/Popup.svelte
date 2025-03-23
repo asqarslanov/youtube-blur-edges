@@ -18,6 +18,7 @@
             func: () => {
               type Config = {
                 blurSize: number;
+                roundSize: number;
               };
 
               function createBgVideo(
@@ -49,6 +50,11 @@
 
               const MAIN_VIDEO_ID: string = "youtube-blur-edges--main-video";
 
+              const config: Config = {
+                roundSize: 12,
+                blurSize: 24,
+              };
+
               const mainVideo = document.querySelector<HTMLVideoElement>(
                 "div#container > div.html5-video-player > div.html5-video-container > video.html5-main-video",
               )!;
@@ -56,9 +62,7 @@
                 mainVideo.id = MAIN_VIDEO_ID;
               }
 
-              const config: Config = {
-                blurSize: 24,
-              };
+              mainVideo.style.borderRadius = `${config.roundSize}px`;
 
               createBgVideo(mainVideo, config);
             },
